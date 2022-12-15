@@ -25,7 +25,7 @@ form.addEventListener("submit",function(event){
     event.preventDefault();
     //controllo se sia palindroma
     if(parola.value == reverseWord(parola.value) ){
-        risposta.innerHTML = `la parola ${parola.value} è palindraìoma`
+        risposta.innerHTML = `la parola ${parola.value} è palindroma`;
     }else{
        risposta.innerHTML = `la parola ${parola.value} non è palindroma`;
     }
@@ -41,25 +41,54 @@ Sommiamo i due numeri
 Stabiliamo se la somma dei due numeri è pari o dispari (usando una funzione)
 Dichiariamo chi ha vinto.*/
 
-//creo una funzione per il preventDefoult
 
-//scegliere tra pari o dispari 
 
-let validatore = false;
+
 const scelta = document.getElementById("pariODispari");
-const nuero = document.getElementById("number");
-const form2 = document.getElementById("secondForm");
-
-form2.addEventListener("submit",function(event)){
+const numero = document.getElementById("number");
+const secondForm = document.getElementById("secondForm");
+const vincitore = document.getElementById("testo2")
+secondForm.addEventListener("submit",function(event){
     event.preventDefault();
-    /*
-    while(!validatore){
-        if(scelta.value == "pari" || scelta.value == "dispari"){
-            validatore = true;
+    if(scelta.value == "pari" || scelta.value == "dispari"){
+        if(numero.value <= 5 && numero.value >= 1){
+            const computer = randomNumber();
+            console.log(computer)
+            const a = parseInt(numero.value) + computer;
+            console.log(a);
+            const somma = pari(a);
+            if(somma == scelta.value){
+                vincitore.innerHTML = `il computer ha fatto :${computer}. Quindi hai vinto`  ;
+            }else{
+                vincitore.innerHTML = `il computer ha fatto : ${computer}. Quindi hai perso`  ; ;
+            }
+            
         }else{
-            console.log("sbagliato a scegliere")
+            vincitore.innerHTML = "devi selezionare un numero da 1 a 5"
         }
+
+    }else{
+        vincitore.innerHTML = `devi selezionare o 'pari' o 'dispari`;
+    };
     
-    */
-   };
+});
+
+//funzione per avere un numero random da 1 a 5
+
+function randomNumber (){
+    let num = Math.floor(Math.random()*5 +1);
+    return num;
 }
+
+//funzione per capire se un numero è pari
+
+function pari(x){
+    if (x%2 == 0){
+        return "pari";
+    }else{
+        return "dispari";
+    }
+}
+
+
+
